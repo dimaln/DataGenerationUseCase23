@@ -1,17 +1,15 @@
 ﻿namespace DataGenerationUseCase23.Models
 {
-    internal class Credits
+    public class Credits
     {
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public DateTime ReleaseYear { get; set; }
-        public AgeCertification.AgeCertificationEnum AgeCertification { get; set; }
-        public int Runtime { get; set; }
-        public string Genres { get; set; }
-        public string ProductionСountry { get; set; }
-        public int? Seasons { get; set; }
 
-        public Titles Titles { get; set; }
+        public int TitleId { get; set; }
+
+        public string RealName { get; set; }
+
+        public string CharacterName { get; set; }
+
+        public Role.RoleEnum Role { get; set; }
     }
 }

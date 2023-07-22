@@ -8,5 +8,11 @@ services.AddScoped<IDataGenerator, DataGenerator>()
         .AddScoped<ICsvCreator, CsvCreator>();
 
 var serviceProvider = services.BuildServiceProvider();
-serviceProvider.GetService<ICsvCreator>();
-serviceProvider.GetService<IDataGenerator>();
+
+var titles = serviceProvider
+    .GetService<IDataGenerator>()
+    .GenerateMovieCollection();
+
+await serviceProvider
+    .GetService<ICsvCreator>()
+    .CreateCsvs(titles);

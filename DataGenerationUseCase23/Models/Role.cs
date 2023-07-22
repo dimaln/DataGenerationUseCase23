@@ -1,8 +1,8 @@
 ﻿namespace DataGenerationUseCase23.Models
 {
-    public class Roles
+    public class Role
     {
-        public enum Role
+        public enum RoleEnum
         {
             Director,
             Producer,
@@ -16,18 +16,18 @@
             MusicCompose
         };
 
-        public Dictionary<Role, string> RolesDictionary = new()
+        public Dictionary<RoleEnum, string> RolesDictionary = new()
         {
-            { Role.Director, "Director" },
-            { Role.Producer, "Producer" },
-            { Role.Screenwriter, "Screenwriter" },
-            { Role.Actor, "Actor" },
-            { Role.Actress, "Actress" } ,
-            { Role.Cinematographer, "Cinematographer" },
-            { Role.FilmEditor, "Film Editor" },
-            { Role.ProductionDesigner, "Production Designer" },
-            { Role.CostumeDesigner, "Costume Designer" },
-            { Role.MusicCompose, "Music Composer" }
+            { RoleEnum.Director, "Director" },
+            { RoleEnum.Producer, "Producer" },
+            { RoleEnum.Screenwriter, "Screenwriter" },
+            { RoleEnum.Actor, "Actor" },
+            { RoleEnum.Actress, "Actress" } ,
+            { RoleEnum.Cinematographer, "Cinematographer" },
+            { RoleEnum.FilmEditor, "Film Editor" },
+            { RoleEnum.ProductionDesigner, "Production Designer" },
+            { RoleEnum.CostumeDesigner, "Costume Designer" },
+            { RoleEnum.MusicCompose, "Music Composer" }
         };
     }
 }
