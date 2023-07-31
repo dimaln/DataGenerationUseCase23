@@ -13,6 +13,8 @@ namespace DataGenerationUseCase23.Services
 
         public List<Titles> GenerateMovieCollection()
         {
+            Randomizer.Seed = new Random(8675309);
+
             var result = new List<Titles>();
 
             var creditsFaker = new Faker<Credits>();
