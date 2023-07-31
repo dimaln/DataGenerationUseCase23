@@ -20,12 +20,10 @@ namespace DataGenerationUseCase23.Services
         {
             var result = new List<Titles>();
 
-            var creditsFaker = new Faker<Credits>();
-
             for (int i = 0; i < Random.Shared.Next(10, 20); i++)
             {
                 var faker = new Faker<Titles>()
-                    .RuleFor(x => x.Id, y => UpdateTitleId(titleId))
+                    .RuleFor(x => x.Id, y => UpdateTitleId())
                     .RuleFor(x => x.Title, x => x.Music.Random.Words(5).ToString())
                     .RuleFor(x => x.Description, x => x.Rant.Random.Words(20).ToString())
                     .RuleFor(x => x.ReleaseYear, x => x.Random.Int(1911, DateTime.Now.Year))
@@ -36,7 +34,7 @@ namespace DataGenerationUseCase23.Services
                     .RuleFor(x => x.Seasons, x => x.Random.Int(0, 12))
                     .RuleFor(x => x.Credits, Enumerable
                                              .Range(4, 15)
-                                             .Select(_ => CreateCredit(titleId).Generate()).ToList())
+                                             .Select(_ => CreateCredit().Generate()).ToList())
                     .Generate();
 
                 result.Add(faker);
@@ -45,24 +43,20 @@ namespace DataGenerationUseCase23.Services
             return result;
         }
 
-        private int UpdateTitleId(int id)
+        private int UpdateTitleId()
         {
-            titleId = ++id;
-
-            return titleId;
+            return ++titleId;
         }
 
-        private int UpdateCreditId(int id)
+        private int UpdateCreditId()
         {
-            creditId = ++id;
-
-            return creditId;
+            return ++creditId;
         }
 
-        private Faker<Credits> CreateCredit(int titleId)
+        private Faker<Credits> CreateCredit()
         {
             return new Faker<Credits>()
-              .RuleFor(x => x.Id, y => UpdateCreditId(creditId))
+              .RuleFor(x => x.Id, y => UpdateCreditId())
               // first created related entities, so need to update titleId manually
               .RuleFor(x => x.TitleId, y => titleId + 1)
               .RuleFor(x => x.RealName, r => r.Person.FullName)
