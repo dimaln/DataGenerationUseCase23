@@ -10,14 +10,15 @@ namespace DataGenerationUseCase23.Services
     {
         private int creditId = 0;
         private int titleId = 0;
+        private readonly int _repitableDataSetId = 8675309;
 
         public DataGenerator()
         {
+            Randomizer.Seed = new Random(_repitableDataSetId);
         }
 
         public List<Titles> GenerateMovieCollection()
         {
-            SetRepitableDataSets();
             var result = new List<Titles>();
 
             for (int i = 0; i < Random.Shared.Next(10, 20); i++)
@@ -41,11 +42,6 @@ namespace DataGenerationUseCase23.Services
             }
 
             return result;
-        }
-
-        private static void SetRepitableDataSets()
-        {
-            Randomizer.Seed = new Random(8675309);
         }
 
         private int UpdateTitleId()

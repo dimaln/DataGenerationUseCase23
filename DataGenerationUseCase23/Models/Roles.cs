@@ -30,6 +30,7 @@
             MusicCompose
         };
 
-        public Dictionary<Role, string> RolesDictionary = _dictionary;
+
+        public Dictionary<Role, string> RolesDictionary { get => _dictionary; }
     }
 }

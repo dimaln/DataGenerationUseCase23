@@ -85,6 +85,6 @@
             TVMA,
         }
 
-        public Dictionary<AgeCertification, string> AgeCertificationDictionary = _dictionary;
+        public Dictionary<AgeCertification, string> AgeCertificationDictionary { get => _dictionary; }
     }
 }

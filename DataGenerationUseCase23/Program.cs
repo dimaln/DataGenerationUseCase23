@@ -17,7 +17,6 @@ internal class Program
         await GenerateCsv(serviceProvider);
     }
 
-    [SuppressMessage("SonarLint", "CS8602", Justification = "Ignored intentionally as a demo")]
     private static async Task GenerateCsv(ServiceProvider serviceProvider)
     {
         var titles = serviceProvider
