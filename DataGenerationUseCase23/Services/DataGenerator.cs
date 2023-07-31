@@ -1,8 +1,8 @@
 ﻿using Bogus;
 using DataGenerationUseCase23.Models;
 using DataGenerationUseCase23.Services.Interfaces;
-using static DataGenerationUseCase23.Models.AgeCertification;
-using static DataGenerationUseCase23.Models.Role;
+using static DataGenerationUseCase23.Models.AgeCertifications;
+using static DataGenerationUseCase23.Models.Roles;
 
 namespace DataGenerationUseCase23.Services
 {
@@ -11,10 +11,13 @@ namespace DataGenerationUseCase23.Services
         private int creditId = 0;
         private int titleId = 0;
 
-        public List<Titles> GenerateMovieCollection()
+        public DataGenerator()
         {
             Randomizer.Seed = new Random(8675309);
+        }
 
+        public List<Titles> GenerateMovieCollection()
+        {
             var result = new List<Titles>();
 
             var creditsFaker = new Faker<Credits>();
@@ -26,7 +29,7 @@ namespace DataGenerationUseCase23.Services
                     .RuleFor(x => x.Title, x => x.Music.Random.Words(5).ToString())
                     .RuleFor(x => x.Description, x => x.Rant.Random.Words(20).ToString())
                     .RuleFor(x => x.ReleaseYear, x => x.Random.Int(1911, DateTime.Now.Year))
-                    .RuleFor(x => x.AgeCertification, x => x.Random.Enum<AgeCertificationEnum>())
+                    .RuleFor(x => x.AgeCertification, x => GetAgeCertification(x.Random.Enum<AgeCertification>()))
                     .RuleFor(x => x.Runtime, x => x.Random.Int(15, 150))
                     .RuleFor(x => x.Genres, x => x.Music.Genre())
                     .RuleFor(x => x.ProductionCountry, x => x.Address.Country())
@@ -64,7 +67,21 @@ namespace DataGenerationUseCase23.Services
               .RuleFor(x => x.TitleId, y => titleId + 1)
               .RuleFor(x => x.RealName, r => r.Person.FullName)
               .RuleFor(x => x.CharacterName, new Faker().Person.FullName)
-              .RuleFor(x => x.Role, x => x.Random.Enum<RoleEnum>());
+              .RuleFor(x => x.Role, x => GetRole(x.Random.Enum<Role>()));
+        }
+
+        private static string GetAgeCertification(AgeCertification x)
+        {
+            new AgeCertifications().AgeCertificationDictionary.TryGetValue(x, out var ageCertification);
+
+            return ageCertification ?? string.Empty;
+        }
+
+        private static string GetRole(Role x)
+        {
+            new Roles().RolesDictionary.TryGetValue(x, out var role);
+
+            return role ?? string.Empty;
         }
     }
 }

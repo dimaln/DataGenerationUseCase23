@@ -8,10 +8,16 @@ namespace DataGenerationUseCase23.Services
 {
     public class CsvCreator : ICsvCreator
     {
-        private string _projectRoot = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+        private readonly string _projectRoot = Directory.GetParent(Environment.CurrentDirectory)
+                ?.Parent
+                ?.Parent
+                ?.FullName
+            ?? throw new ApplicationException("Failed to get project root path.");
 
         public async Task CreateCsvs(List<Titles> titles)
         {
+            if (titles == null) throw new ArgumentException("Generateed data can not be Null!");
+
             await SaveToCsvTitles(titles);
 
             var credits = new List<Credits>();

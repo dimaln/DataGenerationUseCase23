@@ -6,10 +6,10 @@
 
         public int TitleId { get; set; }
 
-        public string RealName { get; set; }
+        public string RealName { get; set; } = string.Empty;
 
-        public string CharacterName { get; set; }
+        public string CharacterName { get; set; } = string.Empty;
 
-        public Role.RoleEnum Role { get; set; }
+        public string Role { get; set; } = string.Empty;
     }
 }

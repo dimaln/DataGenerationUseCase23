@@ -9,10 +9,17 @@ services.AddScoped<IDataGenerator, DataGenerator>()
 
 var serviceProvider = services.BuildServiceProvider();
 
-var titles = serviceProvider
-    .GetService<IDataGenerator>()
-    .GenerateMovieCollection();
+if (serviceProvider != null)
+{
+    var titles = serviceProvider
+        .GetService<IDataGenerator>()
+        .GenerateMovieCollection();
 
-await serviceProvider
-    .GetService<ICsvCreator>()
-    .CreateCsvs(titles);
+    await serviceProvider
+        .GetService<ICsvCreator>()
+        .CreateCsvs(titles);
+}
+else
+{
+    throw new ApplicationException();
+}

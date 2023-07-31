@@ -4,23 +4,23 @@
     {
         public int Id { get; set; }
 
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
 
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
         public int ReleaseYear { get; set; }
 
-        public AgeCertification.AgeCertificationEnum AgeCertification { get; set; }
+        public string AgeCertification { get; set; } = string.Empty;
 
         public int Runtime { get; set; }
 
-        public string Genres { get; set; }
+        public string Genres { get; set; } = string.Empty;
 
-        public string ProductionCountry { get; set; }
+        public string ProductionCountry { get; set; } = string.Empty;
 
         public int? Seasons { get; set; }
 
 
-        public ICollection<Credits> Credits { get; set; }
+        public ICollection<Credits> Credits { get; set; } = new List<Credits>();
     }
 }
